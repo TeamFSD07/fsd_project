@@ -17,45 +17,7 @@
 
 <body>
 
-  <header class="header" data-header>
-    <div class="container">
-
-      <a href="#" class="logo">
-        <img src="../static/images/logo.jpg" alt="Landio logo" class="logo">
-      </a>
-
-      <button class="menu-toggle-btn" data-nav-toggle-btn>
-        <ion-icon name="menu-outline"></ion-icon>
-      </button>
-
-      <nav class="navbar">
-        <ul class="navbar-list">
-
-          <li>
-            <a href="index.html" class="navbar-link">Home</a>
-          </li>
-
-          <li>
-            <a href="/" class="navbar-link">About</a>
-          </li>
-
-          <li>
-            <a href="/" class="navbar-link">Contact Us</a>
-          </li>
-          <li>
-            <a href="auth/login/login.html" class="navbar-link">Login</a>
-          </li>
-
-        </ul>
-
-        <div class="header-actions">
-
-        </div>
-      </nav>
-
-    </div>
-  </header>
-
+  <div id="header"></div>
 <main>
     <article>
       <section class="hero" id="hero">
@@ -170,89 +132,24 @@
     </article>
   </main>
 
-  <footer>
-
-    <div class="footer-top">
-      <div class="container">
-
-        <div class="footer-brand">
-
-          <a href="#" class="logo">
-            <img src="../static/images/logo.jpg" alt="" height="50px" width="50px">
-          </a>
-
-          <p class="footer-text">
-            Cras ultricies mi eu turpis sit hendrerit fringilla vestibulum ante ipsum primis in faucibus ultrices
-            posuere cubilia.
-          </p>
-
-          <ul class="social-list">
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-        <div class="footer-link-box">
-
-          <ul class="footer-list">
-            <li>
-                <p class="footer-item-title">Home</p>
-              </li>
-
-            <li>
-              <p class="footer-item-title">About us</p>
-            </li>
-
-            <li>
-                <p class="footer-item-title">Contact</p>
-              </li>
-
-              <li>
-                <p class="footer-item-title">Support</p>
-              </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container">
-        <p class="copyright">
-          &copy; 2024 <a href="">teamoak</a>. All Right Reserved
-        </p>
-      </div>
-    </div>
-
-  </footer>
+  <div id="footer"></div>
 
   <script src="../static/js/index.js"></script>
+  <script>
+    // Load header
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header').innerHTML = data;
+        });
+
+    // Load footer
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+</script>
 
  
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
