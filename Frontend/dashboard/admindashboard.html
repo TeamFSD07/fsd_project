@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="..static/java script/admindashboard.js"></script>
+    <link rel="stylesheet" href="../static/css/admindashboard.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mulish:wght@600;700;900&family=Quicksand:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <div id="header"></div>
+    <h1>admin dashboard</h1>
+    <p></p>
+    <div id="footer"></div>
+    <script src="../static/js/index.js"></script>
+    <script>
+      // Load header
+      fetch('../mainpages/header.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('header').innerHTML = data;
+          });
+  
+      // Load footer
+      fetch('../mainpages/footer.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('footer').innerHTML = data;
+          });
+  </script>
+  
+   
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+</body>
+</html>
