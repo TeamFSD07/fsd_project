@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="../static/css/inventory.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <
+    <link rel="stylesheet" href="https://unpkg.com/a11y-slider@latest/dist/a11y-slider.css"/>
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/a11y-slider@latest/dist/a11y-slider.js" defer></script>
+</head>
+<body>
+    <nav>
+  
+        <div class="nav-bar">
+    <ul class="nav-links">
+        <li><a href="../mainpages/index.html">Home</a></li>
+        </ul>
+    <div class="search">
+        <label>
+            <input type="text" placeholder="Search here">
+            <ion-icon name="search-outline"></ion-icon>
+        </label>
+    </div>
+
+    <div class="user">
+        <img src="../static/images/customer01.png" alt="">
+    </div>
+</div>
+</nav>
+
+<div class="cardBox">
+    <div class="card">
+        <div>
+            <div class="numbers">1,504</div>
+            <div class="cardName">Daily Views</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="eye-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">80</div>
+            <div class="cardName">Sales</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="cart-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">284</div>
+            <div class="cardName">Comments</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <div class="numbers">117,842</div>
+            <div class="cardName">Earning</div>
+        </div>
+
+        <div class="iconBx">
+            <ion-icon name="cash-outline"></ion-icon>
+        </div>
+    </div>
+</div>
+
+<!-- ================ Order Details List ================= -->
+<div class="details">
+    <div class="recentOrders">
+        <div class="cardHeader">
+            <h2>Recent Orders</h2>
+            <a href="#" class="btn">View All</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Price</td>
+                    <td>STOCK</td>
+                    <td>Status</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>COMPUTER</td>
+                    <td>24000</td>
+                    <td>1200</td>
+                    <td><span class="status delivered">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>DELL Laptop</td>
+                    <td>50000</td>
+                    <td>700</td>
+                    <td><span class="status pending">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>HP LAPTOP</td>
+                    <td>42000</td>
+                    <td>500</td>
+                    <td><span class="status return">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>WIRED MOUSE</td>
+                    <td>620</td>
+                    <td>2000</td>
+                    <td><span class="status inProgress">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>WIRELIESS MOUSE</td>
+                    <td>900</td>
+                    <td>1900</td>
+                    <td><span class="status delivered">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>Dell Laptop</td>
+                    <td>4110</td>
+                    <td>1710</td>
+                    <td><span class="status pending">in stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>UPS</td>
+                    <td>3600</td>
+                    <td>00</td>
+                    <td><span class="status return">out of  stock</span></td>
+                </tr>
+
+                <tr>
+                    <td>moterboard</td>
+                    <td>3620</td>
+                    <td>00</td>
+                    <td><span class="status inProgress">out of stock</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ================= New Customers ================ -->
+    <div class="recentCustomers">
+        <div class="cardHeader">
+            <h2>Recent Customers</h2>
+        </div>
+
+        <table>
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer01.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer01.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer01.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>David <br> <span>Italy</span></h4>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="60px">
+                    <div class="imgBx"><img src="../static/images/customer01.png" alt=""></div>
+                </td>
+                <td>
+                    <h4>Amit <br> <span>India</span></h4>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- =========== Scripts =========  -->
+<script src="../static/javascript/inventory.js"></script>
+
+<!-- ====== ionicons ======= -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
