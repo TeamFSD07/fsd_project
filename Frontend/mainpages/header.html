@@ -4,57 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Mulish:wght@600;700;900&family=Quicksand:wght@400;500;600;700&display=swap"
-      rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/a11y-slider@latest/dist/a11y-slider.css"
+    />
+    <script
+      src="https://unpkg.com/a11y-slider@latest/dist/a11y-slider.js"
+      defer
+    ></script>
     <title>Header</title>
 </head>
 <body>
-    <header class="header" data-header>
-        <div class="container">
-    
-          <a href="#" class="logo">
-            <img src="../static/images/logo.jpg" alt="" class="logo">
-          </a>
-    
-          <button class="menu-toggle-btn" data-nav-toggle-btn>
-            <ion-icon name="menu-outline"></ion-icon>
-          </button>
-    
-          <nav class="navbar">
-            <ul class="navbar-list">
-    
-              <li>
-                <a href="index.html" class="navbar-link">Home</a>
-              </li>
-    
-              <li>
-                <a href="/" class="navbar-link">About</a>
-              </li>
-    
-              <li>
-                <a href="/" class="navbar-link">Contact Us</a>
-              </li>
-              <li>
-                <a href="../auth/login.html" class="navbar-link">Login</a>
-              </li>
-    
-            </ul>
-    
-            <div class="header-actions">
-    
-            </div>
-          </nav>
-    
-        </div>
-      </header>
-    
-      <script src="../static/js/index.js"></script>
-
-      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    
+  <header class="primary-header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#">
+          <svg class="logo" width="146" height="24">
+            <use xlink:href="../static/images/logo.svg#logo"></use>
+          </svg>
+        </a>
+        <button
+          class="mobile-nav-toggle"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
+          <span class="visually-hidden">Menu</span>
+        </button>
+        <nav class="primary-navigation" id="primary-navigation">
+          <ul aria-label="Primary" role="list" class="nav-list">
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Community</a></li>
+          </ul>
+        </nav>
+        <button class="button | display-sm-none display-md-inline-flex">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </header> 
+    <script>
+     function toggleMenu() {
+      const navToggle = document.querySelector('.mobile-nav-toggle');
+      const primaryNav = document.getElementById('primary-navigation');
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !isExpanded);
+      primaryNav.style.display = !isExpanded ? 'block' : 'none';
+    }
+    </script>
 </body>
 </html>
