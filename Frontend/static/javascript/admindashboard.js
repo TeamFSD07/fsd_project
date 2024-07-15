@@ -1,85 +1,291 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const html = document.documentElement;
-  const body = document.body;
-  const menuLinks = document.querySelectorAll(".admin-menu a");
-  const collapseBtn = document.querySelector(".admin-menu .collapse-btn");
-  const toggleMobileMenu = document.querySelector(".toggle-mob-menu");
-  const switchInput = document.querySelector(".switch input");
-  const switchLabel = document.querySelector(".switch label");
-  const switchLabelText = switchLabel.querySelector("span:last-child");
-  const collapsedClass = "collapsed";
-  const lightModeClass = "light-mode";
+document.addEventListener('DOMContentLoaded', function() {
+  const searchButton = document.getElementById('searchButton');
+  const searchButtonIcon = document.getElementById('searchButtonIcon');
+  const searchForm = document.getElementById('searchForm');
+  const sidebar = document.querySelector('.sidebar');
 
-  /*TOGGLE HEADER STATE*/
-  collapseBtn.addEventListener("click", function() {
-    body.classList.toggle(collapsedClass);
-    this.getAttribute("aria-expanded") == "true"
-      ? this.setAttribute("aria-expanded", "false")
-      : this.setAttribute("aria-expanded", "true");
-    this.getAttribute("aria-label") == "collapse menu"
-      ? this.setAttribute("aria-label", "expand menu")
-      : this.setAttribute("aria-label", "collapse menu");
-  });
-
-  /*TOGGLE MOBILE MENU*/
-  toggleMobileMenu.addEventListener("click", function() {
-    body.classList.toggle("mob-menu-opened");
-    this.getAttribute("aria-expanded") == "true"
-      ? this.setAttribute("aria-expanded", "false")
-      : this.setAttribute("aria-expanded", "true");
-    this.getAttribute("aria-label") == "open menu"
-      ? this.setAttribute("aria-label", "close menu")
-      : this.setAttribute("aria-label", "open menu");
-  });
-
-  /*SHOW TOOLTIP ON MENU LINK HOVER*/
-  for (const link of menuLinks) {
-    link.addEventListener("mouseenter", function() {
-      if (
-        body.classList.contains(collapsedClass) &&
-        window.matchMedia("(min-width: 768px)").matches
-      ) {
-        const tooltip = this.querySelector("span").textContent;
-        this.setAttribute("title", tooltip);
-      } else {
-        this.removeAttribute("title");
+  searchButton.addEventListener('click', function(e) {
+      if (window.innerWidth < 576) {
+          e.preventDefault();
+          searchForm.classList.toggle('show');
+          if (searchForm.classList.contains('show')) {
+              searchButtonIcon.classList.replace('bx-search', 'bx-x');
+          } else {
+              searchButtonIcon.classList.replace('bx-x', 'bx-search');
+          }
       }
-    });
-  }
-
-  // Check the stored mode in localStorage and apply it
-  if (localStorage.getItem("dark-mode") === "false") {
-    html.classList.add(lightModeClass);
-    switchInput.checked = false;
-    switchLabelText.textContent = "Light";
-  } else {
-    html.classList.remove(lightModeClass);
-    switchInput.checked = true;
-    switchLabelText.textContent = "Dark";
-  }
-
-  // Add event listener to the toggle switch
-  switchInput.addEventListener("input", function() {
-    html.classList.toggle(lightModeClass);
-    if (html.classList.contains(lightModeClass)) {
-      switchLabelText.textContent = "Light";
-      localStorage.setItem("dark-mode", "false");
-    } else {
-      switchLabelText.textContent = "Dark";
-      localStorage.setItem("dark-mode", "true");
-    }
   });
 
-  const searchInput = document.querySelector('input[type="search"]');
-  const form = document.querySelector('form');
+  if (window.innerWidth < 768) {
+      if(sidebar) {
+          sidebar.classList.add('hide');
+      }
+  } else if (window.innerWidth > 576) {
+      searchButtonIcon.classList.replace('bx-x', 'bx-search');
+      searchForm.classList.remove('show');
+  }
 
-  searchInput.addEventListener('focus', function() {
-    form.classList.add('active');
-  });
-
-  searchInput.addEventListener('blur', function() {
-    if (!searchInput.value) {
-      form.classList.remove('active');
-    }
+  window.addEventListener('resize', function() {
+      if (this.innerWidth > 576) {
+          searchButtonIcon.classList.replace('bx-x', 'bx-search');
+          searchForm.classList.remove('show');
+      }
   });
 });
+
+// SIDEBAR TOGGLE
+
+let sidebarOpen = false;
+const sidebar = document.getElementById('sidebar');
+
+function openSidebar() {
+  if (!sidebarOpen) {
+    sidebar.classList.add('sidebar-responsive');
+    sidebarOpen = true;
+  }
+}
+
+function closeSidebar() {
+  if (sidebarOpen) {
+    sidebar.classList.remove('sidebar-responsive');
+    sidebarOpen = false;
+  }
+}
+
+// ---------- CHARTS ----------
+
+// BAR CHART
+const barChartOptions = {
+  series: [
+    {
+      data: [10, 8, 6, 4, 2],
+      name: 'Products',
+    },
+  ],
+  chart: {
+    type: 'bar',
+    background: 'transparent',
+    height: 350,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#2962ff', '#d50000', '#2e7d32', '#ff6d00', '#583cb3'],
+  plotOptions: {
+    bar: {
+      distributed: true,
+      borderRadius: 4,
+      horizontal: false,
+      columnWidth: '40%',
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    opacity: 1,
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  stroke: {
+    colors: ['transparent'],
+    show: true,
+    width: 2,
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+  xaxis: {
+    categories: ['Laptop', 'Keyboard', 'Monitor', 'Mouse', 'Cable'],
+    title: {
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      show: true,
+      color: '#55596e',
+    },
+    axisTicks: {
+      show: true,
+      color: '#55596e',
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'Count',
+      style: {
+        color: '#f5f7ff',
+      },
+    },
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+};
+
+const barChart = new ApexCharts(
+  document.querySelector('#bar-chart'),
+  barChartOptions
+);
+barChart.render();
+
+// AREA CHART
+const areaChartOptions = {
+  series: [
+    {
+      name: 'Purchase Orders',
+      data: [31, 40, 28, 51, 42, 109, 100],
+    },
+    {
+      name: 'Sales Orders',
+      data: [11, 32, 45, 32, 34, 52, 41],
+    },
+  ],
+  chart: {
+    type: 'area',
+    background: 'transparent',
+    height: 350,
+    stacked: false,
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ['#00ab57', '#d50000'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    gradient: {
+      opacityFrom: 0.4,
+      opacityTo: 0.1,
+      shadeIntensity: 1,
+      stops: [0, 100],
+      type: 'vertical',
+    },
+    type: 'gradient',
+  },
+  grid: {
+    borderColor: '#55596e',
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  legend: {
+    labels: {
+      colors: '#f5f7ff',
+    },
+    show: true,
+    position: 'top',
+  },
+  markers: {
+    size: 6,
+    strokeColors: '#1b2635',
+    strokeWidth: 3,
+  },
+  stroke: {
+    curve: 'smooth',
+  },
+  xaxis: {
+    axisBorder: {
+      color: '#55596e',
+      show: true,
+    },
+    axisTicks: {
+      color: '#55596e',
+      show: true,
+    },
+    labels: {
+      offsetY: 5,
+      style: {
+        colors: '#f5f7ff',
+      },
+    },
+  },
+  yaxis: [
+    {
+      title: {
+        text: 'Purchase Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+    {
+      opposite: true,
+      title: {
+        text: 'Sales Orders',
+        style: {
+          color: '#f5f7ff',
+        },
+      },
+      labels: {
+        style: {
+          colors: ['#f5f7ff'],
+        },
+      },
+    },
+  ],
+  tooltip: {
+    shared: true,
+    intersect: false,
+    theme: 'dark',
+  },
+};
+
+const areaChart = new ApexCharts(
+  document.querySelector('#area-chart'),
+  areaChartOptions
+);
+areaChart.render();
+
+
+
