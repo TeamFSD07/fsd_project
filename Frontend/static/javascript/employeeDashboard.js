@@ -64,7 +64,7 @@ const barChartOptions = {
   ],
   chart: {
     type: 'bar',
-    background: 'transparent',
+    background: 'lightblue',
     height: 350,
     toolbar: {
       show: false,
@@ -86,7 +86,7 @@ const barChartOptions = {
     opacity: 1,
   },
   grid: {
-    borderColor: '#55596e',
+    borderColor: '#lightblue',
     yaxis: {
       lines: {
         show: true,
@@ -100,7 +100,7 @@ const barChartOptions = {
   },
   legend: {
     labels: {
-      colors: '#f5f7ff',
+      colors: 'black',
     },
     show: true,
     position: 'top',
@@ -108,7 +108,7 @@ const barChartOptions = {
   stroke: {
     colors: ['transparent'],
     show: true,
-    width: 2,
+    width: 3,
   },
   tooltip: {
     shared: true,
@@ -116,23 +116,23 @@ const barChartOptions = {
     theme: 'dark',
   },
   xaxis: {
-    categories: ['Laptop', 'Keyboard', 'Monitor', 'Mouse', 'Cable'],
+    categories: ['Hardware', 'Managing', 'Software', 'Complete', 'Testing'],
     title: {
       style: {
-        color: '#f5f7ff',
+        color: '#000',
       },
     },
     axisBorder: {
       show: true,
-      color: '#55596e',
+      color: '#000000',
     },
     axisTicks: {
       show: true,
-      color: '#55596e',
+      color: '#000000',
     },
     labels: {
       style: {
-        colors: '#f5f7ff',
+        colors: '#000000',
       },
     },
   },
@@ -140,20 +140,20 @@ const barChartOptions = {
     title: {
       text: 'Count',
       style: {
-        color: '#f5f7ff',
+        color: '#000000',
       },
     },
     axisBorder: {
-      color: '#55596e',
+      color: '#000000',
       show: true,
     },
     axisTicks: {
-      color: '#55596e',
+      color: '#000000',
       show: true,
     },
     labels: {
       style: {
-        colors: '#f5f7ff',
+        colors: '#000000',
       },
     },
   },
@@ -169,12 +169,12 @@ barChart.render();
 const areaChartOptions = {
   series: [
     {
-      name: 'Purchase Orders',
-      data: [31, 40, 28, 51, 42, 109, 100],
+      name: 'Present',
+      data: [0,5,10,15,20,25,30],
     },
     {
-      name: 'Sales Orders',
-      data: [11, 32, 45, 32, 34, 52, 41],
+      name: 'Leave',
+      data: [0,5,10,15,20,25,30],
     },
   ],
   chart: {
@@ -187,14 +187,14 @@ const areaChartOptions = {
     },
   },
   colors: ['#00ab57', '#d50000'],
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','aug','sep','oct','nov','dec'],
   dataLabels: {
     enabled: false,
   },
   fill: {
     gradient: {
-      opacityFrom: 0.4,
-      opacityTo: 0.1,
+      opacityFrom: 0.7,
+      opacityTo: 0.2,
       shadeIntensity: 1,
       stops: [0, 100],
       type: 'vertical',
@@ -216,7 +216,7 @@ const areaChartOptions = {
   },
   legend: {
     labels: {
-      colors: '#f5f7ff',
+      colors: '#000',
     },
     show: true,
     position: 'top',
@@ -241,35 +241,35 @@ const areaChartOptions = {
     labels: {
       offsetY: 5,
       style: {
-        colors: '#f5f7ff',
+        colors: '#000',
       },
     },
   },
   yaxis: [
     {
       title: {
-        text: 'Purchase Orders',
+        text: 'Present',
         style: {
-          color: '#f5f7ff',
+          color: '#00000',
         },
       },
       labels: {
         style: {
-          colors: ['#f5f7ff'],
+          colors: ['#00000'],
         },
       },
     },
     {
       opposite: true,
       title: {
-        text: 'Sales Orders',
+        text: 'Leave',
         style: {
-          color: '#f5f7ff',
+          color: '#00000',
         },
       },
       labels: {
         style: {
-          colors: ['#f5f7ff'],
+          colors: ['#00000'],
         },
       },
     },
@@ -277,7 +277,7 @@ const areaChartOptions = {
   tooltip: {
     shared: true,
     intersect: false,
-    theme: 'dark',
+    theme: 'light',
   },
 };
 
@@ -286,7 +286,6 @@ const areaChart = new ApexCharts(
   areaChartOptions
 );
 areaChart.render();
-
 
 
 function toggleDropdown(id) {
@@ -301,3 +300,11 @@ function toggleDropdown(id) {
       icon.classList.add('rotate');
   }
 }
+
+
+
+
+
+
+
+
