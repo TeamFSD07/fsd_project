@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Employees Dashboard</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../static/css/employeeCSS/empDash.css">
+   
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search...">
+            <i class="fa fa-search" onclick="performSearch()"></i>
+          </div>
+				</div>
+        <div class="header-right">
+         <a href=""> <span class="material-icons-outlined">notifications</span></a>
+          <a href=""><span class="material-icons-outlined">email</span></a>
+          <a href=""><span class="material-icons-outlined">account_circle</span></a>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined"></span> Employee
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="#" onclick="showSection('dashboard')">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+
+          <li class="sidebar-list-item">
+            <a href="#" onclick="toggleDropdown('profile-dropdown'); return false;">
+                <span class="material-icons-outlined">group</span> Profile
+                <span class="material-icons-outlined dropdown-icon">expand_more</span>
+            </a>
+            <ul id="profile-dropdown" class="dropdown-menu">
+                <li><a href="#" onclick="showSection('profile')" >Manage Profiles</a></li>
+                <li><a href="#" onclick="showSection('attanLeave')">Attendance & Leave</a></li>
+            </ul>
+        </li>
+
+        <li class="sidebar-list-item">
+          <a href="#" onclick="toggleDropdown('work-dropdown'); return false;">
+              <span class="material-icons-outlined">schedule</span> Work Schedule
+              <span class="material-icons-outlined dropdown-icon">expand_more</span>
+          </a>
+          <ul id="work-dropdown" class="dropdown-menu">
+              <li><a href="#" onclick="showSection('calender')">Calender</a></li>
+              <li><a href="#" onclick="showSection('shifts')" >Shifts</a></li>
+          </ul>
+      </li>
+         
+      <li class="sidebar-list-item">
+        <a href="#" onclick="toggleDropdown('task-dropdown'); return false;">
+            <span class="material-icons-outlined">task_alt</span> Task Management
+            <span class="material-icons-outlined dropdown-icon">expand_more</span>
+        </a>
+        <ul id="task-dropdown" class="dropdown-menu">
+            <li><a href="#" onclick="showSection('workDead')">Work Deadline</a></li>
+            <li><a href="#" onclick="showSection('proTrack')" >Progress Tracking</a></li>
+        </ul>
+    </li>
+         
+     <li class="sidebar-list-item">
+              <a href="#" onclick="toggleDropdown('training-dropdown'); return false;">
+                  <span class="material-icons-outlined">fact_check</span> Training & Development
+                  <span class="material-icons-outlined dropdown-icon">expand_more</span>
+              </a>
+              <ul id="training-dropdown" class="dropdown-menu">
+                  <li><a href="#" onclick="showSection('courseMate')">Course Material</a></li>
+                  <li><a href="#" onclick="showSection('trackPro')">Track Progress</a></li>
+              </ul>
+          </li>
+          
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">poll</span>Documentation
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#" target="_blank">
+              <span class="material-icons-outlined">settings</span> Settings
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <section id="dashboard" class="content-section">
+        <div class="main-title">
+          <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="main-cards">
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>Attendance</h3>
+              <span class="material-icons-outlined">groups</span>
+            </div>
+            <h1>0%</h1>
+          </div>
+
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>Shift</h3>
+              <span class="material-icons-outlined">point_of_sale</span> 
+            </div>
+            <h1>Afternoon</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-inner">
+              <h3>Work Deadline</h3>
+              <span class="material-icons-outlined">inventory_2</span> 
+            </div>
+            <h1>2 Months</h1>
+          </div>
+
+        
+          <div class="card">
+            <div class="card-inner">
+              <h3>Training</h3>
+              <span class="material-icons-outlined">fact_check</span>
+            </div>
+            <h1>0</h1>
+          </div>
+
+        </div>
+
+        <div class="charts">
+
+          <div class="charts-card">
+            <h2 class="chart-title">Task Progress</h2>
+            <div id="bar-chart"></div>
+          </div>
+
+          <div class="charts-card">
+            <h2 class="chart-title">Attendance</h2>
+            <div id="area-chart"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!--  profile section  -->
+      <section id="profile" class="content-section">
+        <section class="bg-light py-3 py-md-5 py-xl-8">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                        <h2 class="mb-4 display-5 text-center">Profile</h2>
+                        <p class="text-secondary text-center lead fs-4 mb-5">The Profile page is your digital hub, where you can fine-tune your experience. Here's a closer look at the settings you can expect to find in your profile page.</p>
+                        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                    </div>
+                </div>
+            </div>
+            </section>
+          
+            <section class="container">
+              <div class="sidebar">
+                  <div class="card" id="pc">
+                      <h5 class="card-title">Welcome, Kumkum Singh</h5>
+                      <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-picture">
+                      <h6 class="card-subtitle">Frontend Developer At Google</h6>
+                      <ul class="stats">
+                          <li>Followers <span>7,854</span></li>
+                          <li>Following <span>5,987</span></li>
+                          <li>Friends <span>4,620</span></li>
+                      </ul>
+                      <button class="btn">Follow</button>
+                  </div>
+                  <div class="card" id="pc">
+                      <div class="card-header">Social Accounts</div>
+                      <div class="social-links">
+                          <a href="#"><i class="fab fa-youtube"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                  </div>
+                  <div class="card" id="pc">
+                      <div class="card-header">About Me</div>
+                      <div class="card-body">
+                          <p>Kumkum Singh belongs to Uttar Pradesh, India. Kumkum is the Frontend Developer of Google LLC (Limited Liability Company)...</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="main-content">
+                  <div class="tabs">
+                      <button class="tab-button active" data-tab="overview">Overview</button>
+                      <button class="tab-button" data-tab="df">Profile</button>
+                      <button class="tab-button" data-tab="emails">Emails</button>
+                      <button class="tab-button" data-tab="password">Password</button>
+                  </div>
+                  <div class="tab-content active" id="overview">
+                      <h5>About</h5>
+                      <p>Kumkum Singh belongs to Uttar Pradesh, India. Kumkum is the Frontend Developer of Google LLC (Limited Liability Company)...</p>
+                      <h5>Profile</h5>
+                      <table>
+                          <tr>
+                              <th>First Name</th>
+                              <td>Kumkum</td>
+                          </tr>
+                          <tr>
+                              <th>Last Name</th>
+                              <td>Singh</td>
+                          </tr>
+                          <tr>
+                              <th>Education</th>
+                              <td>ADIT (IBM) Diploma from NSTI Noida(U.P.)</td>
+                          </tr>
+                          <tr>
+                              <th>Address</th>
+                              <td>Mountain View, California</td>
+                          </tr>
+                          <tr>
+                              <th>Country</th>
+                              <td>United States</td>
+                          </tr>
+                          <tr>
+                              <th>Job</th>
+                              <td>Frontend Developer</td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div class="tab-content" id="df">
+                      <h5>Profile Details</h5>
+                      <form>
+                          <label for="inputFirstName">First Name</label>
+                          <input type="text" id="inputFirstName">
+      
+                          <label for="inputLastName">Last Name</label>
+                          <input type="text" id="inputLastName">
+      
+                          <label for="inputEducation">Education</label>
+                          <input type="text" id="inputEducation">
+      
+                          <label for="inputAddress">Address</label>
+                          <input type="text" id="inputAddress">
+      
+                          <label for="inputCity">City</label>
+                          <input type="text" id="inputCity">
+      
+                          <label for="inputState">State</label>
+                          <select id="inputState">
+                              <option value="Australia">Australia</option>
+                              <option value="Austria">Austria</option>
+                              <option value="Bhutan">Bhutan</option>
+                              <option value="Brazil">Brazil</option>
+                              <option value="Canada">Canada</option>
+                              <option value="China">China</option>
+                              <option value="Denmark">Denmark</option>
+                              <option value="France">France</option>
+                              <option value="Germany">Germany</option>
+                              <option value="Hungary">Hungary</option>
+                              <option value="Iceland">Iceland</option>
+                              <option value="India">India</option>
+                              <option value="Indonesia">Indonesia</option>
+                              <option value="Italy">Italy</option>
+                              <option value="Japan">Japan</option>
+                              <option value="Malaysia">Malaysia</option>
+                              <option value="Maldives">Maldives</option>
+                              <option value="Myanmar">Myanmar</option>
+                              <option value="Nepal">Nepal</option>
+                              <option value="Poland">Poland</option>
+                              <option value="Russian Federation">Russian Federation</option>
+                              <option value="Serbia">Serbia</option>
+                              <option value="Singapore">Singapore</option>
+                              <option value="South Africa">South Africa</option>
+                              <option value="Sri Lanka">Sri Lanka</option>
+                              <option value="Turkey">Turkey</option>
+                              <option value="United Arab Emirates">United Arab Emirates</option>
+                              <option value="United Kingdom">United Kingdom</option>
+                              <option value="United States" selected>United States</option>
+                              <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                              <option value="Zimbabwe">Zimbabwe</option>
+                          </select>
+      
+                          <label for="inputZip">Zip</label>
+                          <input type="text" id="inputZip">
+      
+                          <button type="submit">Update Profile</button>
+                      </form>
+                  </div>
+                  <div class="tab-content" id="emails">
+                      <h5>Email Settings</h5>
+                      <form>
+                          <label for="inputPrimaryEmail">Primary Email</label>
+                          <input type="email" id="inputPrimaryEmail">
+      
+                          <label for="inputSecondaryEmail">Secondary Email</label>
+                          <input type="email" id="inputSecondaryEmail">
+      
+                          <button type="submit">Update Email</button>
+                      </form>
+                  </div>
+                  <div class="tab-content" id="password">
+                      <h5>Password Settings</h5>
+                      <form>
+                          <label for="inputCurrentPassword">Current Password</label>
+                          <input type="password" id="inputCurrentPassword">
+      
+                          <label for="inputNewPassword">New Password</label>
+                          <input type="password" id="inputNewPassword">
+      
+                          <label for="inputConfirmPassword">Confirm Password</label>
+                          <input type="password" id="inputConfirmPassword">
+      
+                          <button type="submit">Update Password</button>
+                      </form>
+                  </div>
+              </div>
+          </section>
+        </section>
+
+        <!-- Attendance section -->
+         <section id="attanLeave" class="content-section">
+          <div class="container-attLeave">
+            <h1>Employee Dashboard</h1>
+    
+            <div class="form-container">
+                <h2>Mark Attendance</h2>
+                <form id="attendanceForm">
+                    <label for="attendanceEmployeeId">Employee ID:</label>
+                    <input type="text" id="attendanceEmployeeId" name="attendanceEmployeeId" required>
+    
+                    <label for="attendanceName">Name:</label>
+                    <input type="text" id="attendanceName" name="attendanceName" required>
+    
+                    <button type="submit" id="attendanceSubmitButton">Submit</button>
+                </form>
+            </div>
+    
+            <div class="form-container">
+                <h2>Leave Request</h2>
+                <form id="leaveForm">
+                    <label for="leaveEmployeeId">Employee ID:</label>
+                    <input type="text" id="leaveEmployeeId" name="leaveEmployeeId" required>
+    
+                    <label for="leaveName">Name:</label>
+                    <input type="text" id="leaveName" name="leaveName" required>
+    
+                    <label for="leaveDate">Date:</label>
+                    <input type="date" id="leaveDate" name="leaveDate" required>
+    
+                    <label for="leaveReason">Reason:</label>
+                    <textarea id="leaveReason" name="leaveReason" required></textarea>
+    
+                    <button type="submit" id="leaveSubmitButton">Submit</button>
+                </form>
+            </div>
+    
+            <div class="table-container">
+                <h2>Attendance Records</h2>
+                <table id="attendanceTable">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+    
+            <div class="table-container">
+                <h2>Leave Requests</h2>
+                <table id="leaveTable">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>  
+         </section>
+
+         <!-- Calender -->
+          <section id="calender" class="content-section">
+         <div class="calendar-container">
+          <div class="calendar-header">
+              <button id="prev-month">Previous</button>
+              <h2 id="month-year"></h2>
+              <button id="next-month">Next</button>
+          </div>
+          <table class="calendar">
+              <thead>
+                  <tr>
+                      <th>Sun</th>
+                      <th>Mon</th>
+                      <th>Tue</th>
+                      <th>Wed</th>
+                      <th>Thu</th>
+                      <th>Fri</th>
+                      <th>Sat</th>
+                  </tr>
+              </thead>
+              <tbody id="calendar-body">
+                  <!-- Calendar days will be generated here by JavaScript -->
+              </tbody>
+          </table>
+      </div>
+  
+      <div id="event-modal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Add Event</h2>
+              <form id="event-form">
+                  <label for="event-date">Date:</label>
+                  <input type="text" id="event-date" name="event-date" readonly>
+                  <label for="event-title">Event:</label>
+                  <input type="text" id="event-title" name="event-title" required>
+                  <button type="submit">Add Event</button>
+              </form>
+          </div>
+      </div>
+    </section>
+
+         <!-- shift section-->
+          <section id="shifts" class="content-section">
+            <h1>Employee Shift Management</h1>
+
+    <h2>Current Shifts</h2>
+    <table id="shiftTable">
+        <thead>
+            <tr>
+                <th>Shift Type</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Current shifts will be populated here -->
+        </tbody>
+    </table>
+
+    <h2>Show Past Shifts</h2>
+    <select id="yearSelect"></select>
+    <select id="monthSelect"></select>
+    <button id="showAllShiftsButton">Show All Shifts</button>
+
+    <h3>Shift History</h3>
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>Shift Type</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Historical shifts will be populated here -->
+        </tbody>
+    </table>
+
+          </section>
+
+         <!-- Work deadline section -->
+          <section id="workDead" class="content-section">
+            <h1>Work Deadline Management</h1>
+
+            <form id="workDeadlineForm">
+                <input type="text" id="workTaskName" placeholder="Task Name" required>
+                <input type="date" id="workDeadlineDate" required>
+                <button type="submit" id="workAddDeadlineButton">Add Deadline</button>
+            </form>
+        
+            <h2>Deadlines</h2>
+            <table id="workDeadlineTable">
+                <thead>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="workDeadlineTableBody">
+                    <!-- Deadlines will be populated here -->
+                </tbody>
+            </table>
+          </section>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../static/javascript/employeeJS/empDash.js"></script>
+   
+  </body>
+</html>

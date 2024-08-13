@@ -1,0 +1,847 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eff2f7;
+    color: #060608;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 35px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      'sidebar header header header'
+      'sidebar main main main';
+    height: 100vh;
+  }
+  /* ---------- HEADER ---------- */
+  .header {
+    grid-area: header;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  /* ---------- SIDEBAR ---------- */
+  
+  #sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #030c1c;
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+  
+  .sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 30px 30px 30px;
+    margin-bottom: 30px;
+    color: aliceblue;
+  }
+  
+  .sidebar-title > span {
+    display: none;
+  }
+  
+  .sidebar-brand {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .sidebar-list {
+    padding: 0;
+    margin-top: 15px;
+    list-style-type: none;
+  }
+  
+  .sidebar-list-item {
+    padding: 20px 20px 20px 20px;
+    font-size: 18px;
+  }
+  
+  .sidebar-list-item:hover {
+    background-color: rgba(209, 197, 197, 0.2);
+    cursor: pointer;
+  }
+  
+  .sidebar-list-item > a {
+    text-decoration: none;
+    color: #ddddf5;
+  }
+  
+  .sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+    /*
+      the z-index of the ApexCharts is 11
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+    z-index: 12 !important;
+  }
+  
+  .sidebar-list-item {
+    list-style-type: none;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+    background-color: #070623;
+  }
+  
+  .dropdown-menu li {
+    margin: 5px 0;
+    background-color: #070623;
+    color: whitesmoke;
+  }
+  
+  .sidebar-list-item a {
+    text-decoration: none;
+    color: rgb(251, 248, 248);
+    display: flex;
+    align-items: center;
+  }
+  
+  .sidebar-list-item a:hover{
+     background-color: rgba(178, 168, 168, 0.2);
+  
+   
+   
+  }
+  
+  .dropdown-icon {
+    margin-left: auto;
+    transition: transform 0.3s;
+  }
+  
+  
+  .dropdown-icon.rotate {
+    transform: rotate(180deg);
+  }
+  
+  
+  /* ---------- MAIN ---------- */
+  
+  .main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 20px 20px;
+    color: rgba(9, 5, 53, 0.95);
+  }
+  
+  .main-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .main-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .card:first-child {
+    background-color: #f03e73;
+  }
+  
+  .card:nth-child(2) {
+    background-color: #6f30db;
+  }
+  
+  .card:nth-child(3) {
+    background-color: #4bda52;
+  }
+  
+  .card:nth-child(4) {
+    background-color: #e57514;
+  }
+  
+  .card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card-inner > .material-icons-outlined {
+    font-size: 45px;
+  }
+  
+  .charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 60px;
+  }
+  
+  .charts-card {
+    background-color: #ccd2dd;
+    margin-bottom: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px -4px rgba(114, 110, 110, 0.2);
+  }
+  
+  .chart-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* ---------- MEDIA QUERIES ---------- */
+  
+  /* Medium <= 992px */
+  
+  @media screen and (max-width: 992px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.2fr 3fr;
+      grid-template-areas:
+        'header'
+        'main';
+    }
+  
+    #sidebar {
+      display: none;
+    }
+  
+    .menu-icon {
+      display: inline;
+    }
+  
+    .sidebar-title > span {
+      display: inline;
+    }
+  }
+  
+  /* Small <= 768px */
+  
+  @media screen and (max-width: 768px) {
+    .main-cards {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+  
+    .charts {
+      grid-template-columns: 1fr;
+      margin-top: 30px;
+    }
+  }
+  
+  /* Extra Small <= 576px */
+  
+  @media screen and (max-width: 576px) {
+    .hedaer-left {
+      display: none;
+    }
+  
+      .grid-container header header-left form .form-input input {
+          display: none;
+      }
+  
+      .grid-container header header-left form .form-input button {
+          width: auto;
+          height: auto;
+          background: transparent;
+          border-radius: none;
+          color: var(--light);
+      }
+  
+      .grid-container header header-left form.show .form-input input {
+          display: block;
+          width: 100%;
+      }
+      .grid-container header header-left form.show .form-input button {
+          width: 36px;
+          height: 100%;
+          border-radius: 0 36px 36px 0;
+          color: var(--light);
+          background: var(--red);
+      }
+  }
+  
+  /* search bar */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px; /* Curved shape */
+    overflow: hidden; /* Ensure the inner elements follow the parent's border radius */
+    background-color: #070623; /* Background color for better visibility */
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  
+  #search-bar {
+    padding: 5px;
+    font-size: 16px;
+    border: none; /* Remove default border */
+    outline:#070623; /* Remove default outline */
+    border-radius: 20px 0 0 20px; /* Curved shape for the input */
+    flex-grow: 1;
+    background-color:whitesmoke; /* Match the parent background */
+  }
+  
+  .fa-search {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #110d0d; /* Icon color */
+    background-color:white; /* Background color for the icon */
+    border-radius: 0 20px 20px 0; /* Curved shape for the icon */
+  }
+  
+  /* spa css */
+  main {
+    padding: 5px;
+  }
+  
+  .content-section {
+    display: none;
+  }
+  
+  /* calender css */
+  .calendar-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #3527d5;
+    color: white;
+  }
+  
+  .calendar-header button {
+    background-color: #f7f4fa;
+    border: none;
+    color: rgb(40, 15, 109);
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .calendar-header button:hover {
+    background-color: #92abf1;
+  }
+  
+  .calendar-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .calendar {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    height: 60px;
+    vertical-align: top;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .calendar td:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .calendar td .event {
+    background-color: #5049d5;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* profile css */
+  .container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.main-content {
+    flex: 3;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px 0;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.stats {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats li {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.card-header {
+    font-weight: bold;
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    margin: -20px -20px 20px -20px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.social-links a {
+    color: #333;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px;
+    background: #031b33;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.tab-button.active {
+    background: #fff;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+form label {
+    flex: 1 1 100%;
+    margin: 10px 0 5px;
+}
+
+form input,
+form select,
+form button {
+    flex: 1 1 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #0056b3;
+}
+
+#pc{
+  background-color: rgb(216, 213, 213);
+  
+}
+
+  /* Attendance */
+  .container-attLeave {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #aaa;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container, .table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Specific styles for Attendance Form */
+#attendanceEmployeeId,
+#attendanceName {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#attendanceSubmitButton {
+    background: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#attendanceSubmitButton:hover {
+    background: #218838;
+}
+
+/* Specific styles for Leave Request Form */
+#leaveEmployeeId,
+#leaveName,
+#leaveDate,
+#leaveReason {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#leaveReason {
+    resize: vertical;
+    min-height: 80px;
+}
+
+#leaveSubmitButton {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#leaveSubmitButton:hover {
+    background: #0056b3;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    .form-container, .table-container {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* shifts css */
+.container-shift {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+select {
+  width: 48%;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Work dead line css */
+
+/* Form styles */
+#workDeadlineForm {
+  margin-bottom: 20px;
+}
+
+#workDeadlineForm input[type="text"],
+#workDeadlineForm input[type="date"] {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px; /* Adjust width as needed */
+}
+
+#workAddDeadlineButton {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#workAddDeadlineButton:hover {
+  background-color: #0056b3;
+}
+
+/* Table styles */
+#workDeadlineTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#workDeadlineTable th,
+#workDeadlineTable td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+#workDeadlineTable th {
+  background-color: #f4f4f4;
+}
+
+/* Zebra striping for table rows */
+#workDeadlineTable tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; 
+}
+
+#workDeadlineTable tbody tr:hover {
+  background-color: #e9ecef; /* Highlight row on hover */
+}
+  
+   
